@@ -64,7 +64,12 @@ let malo = function (x, y) {
     }
 
     this.moviment = function () {
-
+        let haMuerto = julen.muerte(this.x,this.y)
+        if(haMuerto){
+            alert('TE HAS MUERTO')
+            julen.x = 100
+            julen.y = 100
+        }
         retras++;
         if (retras == 10) {
             let posicion = Math.floor(Math.random() * 4)
@@ -112,6 +117,14 @@ let prota = function (x, y) {
     this.x = x;
     this.y = y;
     this.clau = false;
+
+    this.muerte = function(x,y){
+        let sehaMatado = false;
+        if(this.x == x && this.y == y){
+            sehaMatado = true;
+        }
+        return sehaMatado
+        }
 
     this.margenes = function (x, y) {
         let colisio = false;
@@ -175,6 +188,7 @@ let prota = function (x, y) {
             this.logica()
         }
     }
+  
 }
 let julen = new prota(50, 50);
 let enemic = new malo(1200, 100)
