@@ -67,12 +67,17 @@ let malo = function (x, y) {
 
     this.moviment = function () {
         let haMuerto = julen.muerte(this.x,this.y)
-        if(haMuerto){
+        if(haMuerto && vidas == 0){
             alert('TE HAS MUERTO')
             julen.x = 100
             julen.y = 100
             escenari[posicionllave.y][posicionllave.x] = 3
             julen.clau = false;
+        }else if(haMuerto && vidas > 0){
+            vidas--
+            julen.x = 100
+            julen.y = 100
+            alert("TE QUEDAN "+vidas+" VIDAS")
         }
         retras++;
         if (retras == 10) {
