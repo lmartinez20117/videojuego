@@ -8,6 +8,8 @@ let altC = 50;
 let retras = 0;
 
 let tilemap;
+let posicionllave = {x:17, y:11};
+let vidas = 5;
 
 let escenari = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -69,6 +71,8 @@ let malo = function (x, y) {
             alert('TE HAS MUERTO')
             julen.x = 100
             julen.y = 100
+            escenari[posicionllave.y][posicionllave.x] = 3
+            julen.clau = false;
         }
         retras++;
         if (retras == 10) {
@@ -125,7 +129,7 @@ let prota = function (x, y) {
         }
         return sehaMatado
         }
-
+  
     this.margenes = function (x, y) {
         let colisio = false;
         if (escenari[y / 50][x / 50] == 0 ) {
