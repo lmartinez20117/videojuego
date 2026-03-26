@@ -10,6 +10,7 @@ let retras = 0;
 let tilemap;
 let posicionllave = {x:17, y:11};
 let vidas = 5;
+let personaje = 1;
 
 let escenari = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -49,6 +50,13 @@ function inicializar() {
     setInterval(function () {
         principal();
     }, 1000 / FPS)
+    let eleccion = prompt("Elige princesa: 1, 2 o 3");
+
+personaje = parseInt(eleccion);
+
+if (personaje < 1 || personaje > 3 || isNaN(personaje)) {
+    personaje = 1;
+}
 }
 
 function borrarPantalla() {
@@ -61,10 +69,8 @@ let malo = function (x, y) {
     this.y = y;
 
    this.dibuixa = function () {
-
-        ctx.drawImage(tilemap,96,32,32,32,this.x, this.y, 50, 50)
-    }
-
+let spriteX = (personaje - 1) * 32;
+ctx.drawImage(tilemap,96,32,32,32,this.x, this.y, 50, 50)   }
     this.moviment = function () {
         let haMuerto = julen.muerte(this.x,this.y)
         if(haMuerto && vidas == 0){
@@ -164,8 +170,14 @@ let prota = function (x, y) {
     }
 
     this.dibuixa = function () {
-        ctx.drawImage(tilemap,0,32,32,32,this.x, this.y, 50, 50)
-    }
+let princess = 0;
+
+if (personaje == 1) princess = 0;
+if (personaje == 2) princess = 32;
+if (personaje == 3) princess = 64;
+
+ctx.drawImage(tilemap, princess, 32, 32, 32, this.x, this.y, 50, 50);    }
+
     this.text = function () {
         ctx.font = '30px impact'
         ctx.fillStyle = '#f86e44'
